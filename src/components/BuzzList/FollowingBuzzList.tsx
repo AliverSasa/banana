@@ -2,10 +2,10 @@ import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
-import { buzzEntityAtom } from '../../store/buzz';
-import { IBtcEntity } from '@metaid/metaid';
-import { environment } from '../../utils/environments';
-import { isEmpty, isNil } from 'ramda';
+// import { buzzEntityAtom } from '../../store/buzz';
+// import { IBtcEntity } from '@metaid/metaid';
+// import { environment } from '../../utils/environments';
+import { isEmpty } from 'ramda';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { fetchFollowingList, fetchMyFollowingBuzzs, fetchMyFollowingTotal} from '../../api/buzz';
 import { Pin } from '../../api/request';
@@ -18,7 +18,7 @@ const FollowingBuzzList = () => {
   const navigate = useNavigate();
   const { ref, inView } = useInView();
   const btcConnector = useAtomValue(btcConnectorAtom);
-  const buzzEntity = useAtomValue(buzzEntityAtom);
+  // const buzzEntity = useAtomValue(buzzEntityAtom);
 
  
 

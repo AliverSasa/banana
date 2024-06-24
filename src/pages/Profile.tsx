@@ -11,6 +11,7 @@ import ProfileCard from '../components/ProfileCard';
 const Profile = () => {
   const { id: address } = useParams();
 
+  console.log(address)
   return (
     <div>
       <BackButton />

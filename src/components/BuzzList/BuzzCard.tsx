@@ -82,7 +82,7 @@ const BuzzCard = ({ buzzItem, onBuzzDetail, innerRef }: IProps) => {
     queryFn: () =>
       btcConnector?.getUser({
         network: environment.network,
-        currentAddress: buzzItem!.createAddress,
+        currentAddress: buzzItem!.creator,
       }),
   });
   const metaid = currentUserInfoData?.data?.metaid;
@@ -388,7 +388,6 @@ const BuzzCard = ({ buzzItem, onBuzzDetail, innerRef }: IProps) => {
   };
 
   const handleFollow = async () => {
-    console.log(Number(globalFeeRate))
     await checkMetaletInstalled();
     await checkMetaletConnected(connected);
 

@@ -12,8 +12,7 @@ export type Pin = {
   id: string;
   number: number;
    address: string;
-  createAddress: string;
-  creator?:string;
+  creator:string;
   output: string;
   outputValue: number;
   timestamp: number;
