@@ -7,7 +7,7 @@ import { IBtcEntity } from '@metaid/metaid';
 import { environment } from '../../utils/environments';
 import { isEmpty, isNil } from 'ramda';
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
-import { fetchFollowingList, fetchMyFollowingBuzzs } from '../../api/buzz';
+import { fetchFollowingList, fetchMyFollowingBuzzs, fetchMyFollowingTotal} from '../../api/buzz';
 import { Pin } from '../../api/request';
 import BuzzCard from './BuzzCard';
 import { btcConnectorAtom } from '../../store/user';
@@ -20,16 +20,7 @@ const FollowingBuzzList = () => {
   const btcConnector = useAtomValue(btcConnectorAtom);
   const buzzEntity = useAtomValue(buzzEntityAtom);
 
-  const getTotal = async (buzzEntity: IBtcEntity) => {
-    setTotal(await buzzEntity?.total({ network: environment.network }));
-  };
-
-  useEffect(() => {
-    if (!isNil(buzzEntity)) {
-      getTotal(buzzEntity!);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [buzzEntity]);
+ 
 
   const { data: myFollowingListData } = useQuery({
     queryKey: ['myFollowing', btcConnector?.metaid],
@@ -41,8 +32,20 @@ const FollowingBuzzList = () => {
       }),
   });
 
+  const getTotal = async ( ) => {
+    setTotal(await fetchMyFollowingTotal({page: 1, size:1, path: '/protocols/simplebuzz,/protocols/banana', metaidList: myFollowingListData?.list ?? []}));
+  };
+  console.log(total)
+
+  useEffect(() => {
+    if (!isEmpty(myFollowingListData?.list ?? [] )) {
+      getTotal( );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ ]);
+
   const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    useInfiniteQuery({
+    useInfiniteQuery({ 
       queryKey: ['following', 'buzzes'],
       enabled: !isEmpty(myFollowingListData?.list ?? []),
 
@@ -50,7 +53,7 @@ const FollowingBuzzList = () => {
         fetchMyFollowingBuzzs({
           page: pageParam,
           size: 5,
-          path: '/protocols/simplebuzz',
+          path: '/protocols/simplebuzz,/protocols/banana', 
           metaidList: myFollowingListData?.list ?? [],
         }),
       initialPageParam: 1,

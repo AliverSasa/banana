@@ -11,9 +11,9 @@ export const BASE_METALET_TEST_URL = `https://www.metalet.space/wallet-api/v3`;
 export type Pin = {
   id: string;
   number: number;
-  rootTxId: string;
-  address: string;
+   address: string;
   createAddress: string;
+  creator?:string;
   output: string;
   outputValue: number;
   timestamp: number;
@@ -39,6 +39,7 @@ export type Pin = {
   pop: string;
   metaid: string;
   chainName: 'mvc' | 'btc';
+  
 };
 
 // export type Pin = {

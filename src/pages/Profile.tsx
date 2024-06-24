@@ -18,6 +18,7 @@ const Profile = () => {
       <ProfileCard address={address ?? ''} />
 
       <AllNewBuzzList
+      // @ts-ignore
         address={address}
         queryKey={['buzzes', environment.network, address]}
       />
