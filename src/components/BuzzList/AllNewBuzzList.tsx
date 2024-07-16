@@ -12,11 +12,12 @@ import { Pin } from '../../api/request';
 import BuzzCard from './BuzzCard';
 
 type Iprops = {
+  address?: string;
    queryKey?: string[];
 };
 
 const AllNewBuzzList = ({
- 
+  address,
   queryKey = ['buzzes', environment.network],
 }: Iprops) => {
   const [total, setTotal] = useState<null | number>(null);
@@ -48,7 +49,8 @@ const AllNewBuzzList = ({
           limit: 5,
           btcConnector: btcConnector!,
           network: environment.network,
-          path:['/protocols/simplebuzz', '/protocols/banana']
+          path:['/protocols/simplebuzz', '/protocols/banana'],
+          address,
          }),
       initialPageParam: 1,
       getNextPageParam: (lastPage, allPages) => {
@@ -61,7 +63,9 @@ const AllNewBuzzList = ({
     });
 
   const buzzes = data?.pages.map((pins: Pin[] | null) =>
+    
     (pins ?? []).map((pin) => {
+      console.log(pin)
       return (
         <BuzzCard
           key={pin.id}

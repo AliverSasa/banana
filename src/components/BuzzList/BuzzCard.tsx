@@ -516,15 +516,7 @@ const BuzzCard = ({ buzzItem, onBuzzDetail, innerRef }: IProps) => {
       <div className="w-full flex" ref={innerRef}>
         <div className="w-[20%] bg-user-area h-[140px]">
           <div className="relative w-full h-full">
-            {/* <img src="/logo_icon.png" className="absolute pos" /> */}
-            <div className="bg-[#2B3440] text-[#D7DDE4] absolute pos flex items-center justify-center">
-              {/* <span>{buzzItem!.metaid.slice(0, 3)}</span> */}
-              <CustomAvatar
-                userInfo={currentUserInfoData.data}
-                onProfileDetail={onProfileDetail}
-                size={"36px"}
-              />
-            </div>
+
 
             {isNil(currentUserInfoData.data) ? (
               <div className="bg-[#2B3440] text-[#D7DDE4] absolute pos flex items-center justify-center">

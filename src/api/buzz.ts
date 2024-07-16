@@ -18,6 +18,7 @@ export async function fetchBuzzs({
   limit,
   network,
   path,
+  address
 }: {
   btcConnector: IBtcConnector;
   page: number;
@@ -25,10 +26,11 @@ export async function fetchBuzzs({
   // @ts-ignore
   network: BtcNetwork;
   path?: string[];
+  address?: string;
   // @ts-ignore
 }): Promise<Pin[] | null> {
-  const response = await btcConnector.getAllpin({ page, limit, network, path });
-
+  // @ts-ignore
+  const response = await btcConnector.getAllpin({ page, limit, network, path,address });
   return response;
 }
 

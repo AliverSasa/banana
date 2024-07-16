@@ -49,7 +49,7 @@ const AboutModal = () => {
 
           <h3 className="text-white text-xl mt-8 mb-2">About Fee</h3>
           <p className="text-gray">
-            Banana3 charges a service fee of 1599 satoshi per PIN.
+            Banana3 charges a service fee of 1998 satoshi per PIN.
           </p>
           {/* <p className="text-gray mt-2">
             We encourage more developers to run their own BitBuzz or create an
